@@ -8,13 +8,10 @@ import java.util.List;
 public class BinaryTreePreorderTraversal {
 
     public static void main(String[] args) {
-
         TreeNode p = new TreeNode(1);
         TreeNode right = new TreeNode(2);
         right.left = new TreeNode(3);
         p.right = right;
-
-
         System.out.println(new BinaryTreePreorderTraversal().preorderTraversal(p));
     }
 
