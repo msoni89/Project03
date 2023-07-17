@@ -5,26 +5,30 @@ import java.util.Arrays;
 public class MoveZeroes {
 
     public static void main(String[] args) {
-        System.out.println(new MoveZeroes().moveZeroes(new int[]{0, 1, 0, 3, 12}));
+        System.out.println(Arrays.toString(new MoveZeroes().moveZeroes(new int[]{1, 0, 1})));
     }
 
     public int[] moveZeroes(int[] nums) {
-
-        int a = 0;
-
-        while (a < nums.length - 1) {
-
-            if (nums[a] == 0) {
-                int num = nums[a + 1];
-                nums[a + 1] = nums[a];
-                nums[a] = num;
+        int swapCount = 0;
+        for (int num : nums) {
+            if (num == 0) {
+                swapCount++;
+            }
+        }
+        int lastSwappedIndex = 0, currentIndex = 0;
+        while (currentIndex < nums.length  - swapCount && swapCount != 0 ) {
+            int c = nums[currentIndex];
+            if (c != 0) {
+                currentIndex++;
+                continue;
             }
 
-            System.out.println(a);
-            System.out.println(Arrays.toString(nums));
-            a++;
+                int value = nums[currentIndex];
+                nums[currentIndex] = nums[lastSwappedIndex];
+                nums[lastSwappedIndex] = value;
+                swapCount--;
+                lastSwappedIndex++;
         }
-
         return nums;
     }
 }
