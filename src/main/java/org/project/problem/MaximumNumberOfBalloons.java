@@ -8,7 +8,7 @@ public class MaximumNumberOfBalloons {
 //    You can use each character in text at most once. Return the maximum number of instances that can be formed.
 
     public static void main(String[] args) {
-        System.out.println(new MaximumNumberOfBalloons().maxNumberOfBalloons("balon"));
+        System.out.println(new MaximumNumberOfBalloons().maxNumberOfBalloons("ballon"));
     }
 
     public int maxNumberOfBalloons(String text) {
@@ -18,21 +18,19 @@ public class MaximumNumberOfBalloons {
         if(text.length() < str.length()){
             return 0;
         }
-        for (int i = 0; i < str.length(); i++) {
-            frequency.put(str.charAt(i), 0);
+        for (int i = 0; i < text.length(); i++) {
+            ++frequency[text.charAt(i) - '0'];
         }
 
-        for (int i = 0; i < text.length(); i++) {
-            if (frequency.containsKey(text.charAt(i))) {
-                frequency.put(text.charAt(i), frequency.getOrDefault(text.charAt(i), 0) + 1);
-            }
+        for (int i = 0; i < str.length(); i++) {
+            --frequency[str.charAt(i) - '0'];
         }
 
         int result = Integer.MAX_VALUE;
-        for (Map.Entry<Character, Integer> entry : frequency.entrySet()) {
-            result = Math.min(entry.getValue(), result);
+        for (int i = 0; i < frequency.length; i++) {
+            System.out.println(frequency[i]);
+
         }
-        System.out.println(frequency);
         return result;
     }
 }
