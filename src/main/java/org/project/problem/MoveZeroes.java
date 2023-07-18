@@ -9,26 +9,18 @@ public class MoveZeroes {
     }
 
     public int[] moveZeroes(int[] nums) {
-        int swapCount = 0;
-        for (int num : nums) {
-            if (num == 0) {
-                swapCount++;
+        int z = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) {
+                z++;
+            } else if (z > 0) {
+                int temp = nums[i];
+                nums[i - z] = temp;
+                nums[i] = 0;
             }
         }
-        int lastSwappedIndex = 0, currentIndex = 0;
-        while (currentIndex < nums.length  - swapCount && swapCount != 0 ) {
-            int c = nums[currentIndex];
-            if (c != 0) {
-                currentIndex++;
-                continue;
-            }
 
-                int value = nums[currentIndex];
-                nums[currentIndex] = nums[lastSwappedIndex];
-                nums[lastSwappedIndex] = value;
-                swapCount--;
-                lastSwappedIndex++;
-        }
+
         return nums;
     }
 }
